@@ -21,7 +21,26 @@ body {
 .wrapper {
   display: flex;
 }
+
 .container {
   max-width: 960px;
   margin-top: 25px;
 }
+
+.title{
+  display: inline-block;
+  background-color: rgba(0,139, 139,0.8);
+  border-radius: 4px;
+  padding: 25px 15px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.wrapper {
+  display:flex;
+  flex-direction: column;
+  font-family: ‘Segoe UI’, Candara, ‘Bitstream Vera Sans’, ‘DejaVu Sans’, ‘Bitsream Vera Sans’, ‘Trebuchet MS’, Verdana, ‘Verdana Ref’, sans-serif;
+  margin:10px;
+}
+
+
