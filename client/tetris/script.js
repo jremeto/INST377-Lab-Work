@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isALeftEdge) currentPosition -= 1;
 
-    if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+    if (current.some((index) => squares[currentPosition + index].classList.contains('taken'))) {
       currentPosition += 1;
     }
   }
@@ -93,4 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Make the tetro move down every second
   timerId = setInterval(moveDown, 1000);
+
+  function control(e) {
+    if (e.keyCode === 37) {
+      moveLeft();
+    }
+  }
 });
