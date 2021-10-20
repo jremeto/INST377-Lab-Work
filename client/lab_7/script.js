@@ -1,22 +1,22 @@
 async function windowActions() {
-  const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
+  function maplnit() {
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1Ijoiam9yZGFucmVtZXRvIiwiYSI6ImNrdXl1MXdmbTc2ancyb21ueDZvMWQ1MnkifQ.JI5aDXjPQko2rtT4KgjnTw'
+    }).addTo(mymap);
+  }
 
-  const accessToken = '';
+  const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
 
   const request = await fetch(endpoint);
 
   const cities = await request.json();
 
   const mymap = L.map('mapid').setView([51.505, -0.09], 13);
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'your.mapbox.access.token'
-    }).addTo(mymap);
-  }
 
   function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
@@ -41,9 +41,8 @@ async function windowActions() {
     suggestions.innerHTML = html;
   }
 
-  const searchInput = document.querySelector('.search');
+  const searchInput = document.querySelector('.input');
   const suggestions = document.querySelector('.suggestions');
-
   searchInput.addEventListener('change', displayMatches);
   searchInput.addEventListener('keyup', (evt) => { displayMatches(evt) });
 }
