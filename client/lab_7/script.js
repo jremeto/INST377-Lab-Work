@@ -18,6 +18,8 @@ async function windowActions() {
 
   const mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
+  const marker = [];
+
   function findMatches(wordToMatch, cities) {
     return cities.filter(place => {
       const regex = new RegExp(wordToMatch, 'gi');
@@ -27,6 +29,16 @@ async function windowActions() {
 
   function displayMatches(event) {
     const matchArray = findMatches(event.target.value, cities);
+    const listLimiter = matchArray.slice(0, 5);
+    listLimiter.forEach(p => {
+        if (p.hasOwnProperty('geocoded_column_1')) {
+            const point = p.geocoded_column_1;
+            const latlog = point.coordinates;
+            const mark = latlog.reverse();
+            marker.push(L.marker(markers).addTo(mymap));
+        }
+    });
+
     const html = matchArray.map((place) => {
       const regex = new RegExp(this.value, 'gi');
       const cityName = place.city.replace(regex, `<span class = 'hl'>${this.value}</span>`);
